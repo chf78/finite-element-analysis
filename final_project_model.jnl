@@ -1,0 +1,570 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.openStep(
+    'C:/Users/CHF78/OneDrive - University of Pittsburgh/Can_abaqus_file.STEP', 
+    scaleFromFile=OFF)
+mdb.models['Model-1'].PartFromGeometryFile(combine=False, dimensionality=
+    THREE_D, geometryFile=mdb.acis, name='Can_abaqus_file', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-6.0, 0.0), point2=(
+    7.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -3.62410259246826, -1.95495510101318), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-5.0, 0.0), point2=(
+    5.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.472709655761719, -1.51351356506348), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='plate', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['plate'].BaseWire(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+del mdb.models['Model-1'].parts['plate']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-6.0, 0.0), point2=(
+    6.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    0.630278587341309, -1.60810852050781), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-5.0, 0.25), 
+    point2=(5.0, -0.25))
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.772091865539551, -1.57657670974731), value=10.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -6.33430051803589, 0.0315313339233398), value=0.1, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-2', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['Part-2'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+del mdb.models['Model-1'].parts['Part-2']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-4.0, 4.0), 
+    point2=(4.0, -3.0))
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -5.01071548461914, 0.898648262023926), value=10.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.646037101745605, -4.76126098632812), value=10.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='rigid plate', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['rigid plate'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['rigid plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].move(objectList=(
+    mdb.models['Model-1'].sketches['__edit__'].geometry[2], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[3], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[4], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[5]), vector=(-1.0, 
+    -2.0))
+mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['rigid plate'].regenerate()
+mdb.models['Model-1'].parts['rigid plate'].ReferencePoint(point=(0.0, 0.0, 
+    0.0))
+mdb.models['Model-1'].Material(name='aluminum')
+mdb.models['Model-1'].materials['aluminum'].Density(table=((2.7e-09, ), ))
+mdb.models['Model-1'].materials['aluminum'].Elastic(table=((69000.0, 0.3), ))
+mdb.models['Model-1'].materials['aluminum'].Plastic(scaleStress=None, table=((
+    160.0, 0.0), (340.0, 0.3)))
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name=
+    'Can_abaqus_file-1', part=mdb.models['Model-1'].parts['Can_abaqus_file'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-1', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(10.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('rigid plate-1', ))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('rigid plate-1', ), 
+    vector=(0.0, -10.0, 0.0))
+del mdb.models['Model-1'].rootAssembly.features['rigid plate-1']
+del mdb.models['Model-1'].rootAssembly.features['Can_abaqus_file-1']
+mdb.models['Model-1'].parts['Can_abaqus_file'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].InterestingPoint(
+    mdb.models['Model-1'].parts['Can_abaqus_file'].edges[16], CENTER))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name=
+    'Can_abaqus_file-1', part=mdb.models['Model-1'].parts['Can_abaqus_file'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-1', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(10.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('rigid plate-1', ))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('rigid plate-1', ), 
+    vector=(-0.39845, 1.470074, -0.78849))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-2', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+del mdb.models['Model-1'].rootAssembly.features['rigid plate-2']
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('rigid plate-1', ), 
+    vector=(0.0, -4.82, 0.0))
+mdb.models['Model-1'].rootAssembly.features.changeKey(fromName='rigid plate-1', 
+    toName='bottom')
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-1', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-2', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(10.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('rigid plate-2', ))
+del mdb.models['Model-1'].rootAssembly.features['rigid plate-1']
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('rigid plate-2', ), 
+    vector=(-0.39845, 1.470074, -0.78849))
+mdb.models['Model-1'].rootAssembly.features.changeKey(fromName='rigid plate-2', 
+    toName='top')
+mdb.models['Model-1'].ExplicitDynamicsStep(improvedDtMethod=ON, name='crushing'
+    , previous='Initial', timePeriod=0.01)
+mdb.models['Model-1'].ContactProperty('friction')
+mdb.models['Model-1'].interactionProperties['friction'].TangentialBehavior(
+    dependencies=0, directionality=ISOTROPIC, elasticSlipStiffness=None, 
+    formulation=PENALTY, fraction=0.005, maximumElasticSlip=FRACTION, 
+    pressureDependency=OFF, shearStressLimit=None, slipRateDependency=OFF, 
+    table=((1.0, ), ), temperatureDependency=OFF)
+mdb.models['Model-1'].ContactExp(createStepName='crushing', name='top')
+mdb.models['Model-1'].interactions['top'].includedPairs.setValuesInStep(
+    stepName='crushing', useAllstar=ON)
+mdb.models['Model-1'].interactions['top'].contactPropertyAssignments.appendInStep(
+    assignments=((GLOBAL, SELF, 'friction'), ), stepName='crushing')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-1', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['bottom'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].EncastreBC(createStepName='crushing', localCsys=None, 
+    name='bottom point', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-1'])
+mdb.models['Model-1'].boundaryConditions['bottom point'].move('crushing', 
+    'Initial')
+mdb.models['Model-1'].boundaryConditions['bottom point'].move('Initial', 
+    'crushing')
+del mdb.models['Model-1'].steps['crushing']
+mdb.models['Model-1'].BuckleStep(name='Step-1', numEigen=3, previous='Initial', 
+    vectors=6)
+mdb.models['Model-1'].rootAssembly.Set(name='Set-2', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['top'].referencePoints[2], ))
+mdb.models['Model-1'].ConcentratedForce(cf2=-25.4, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-2'])
+mdb.models['Model-1'].rootAssembly.Set(name='Set-3', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['bottom'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].EncastreBC(buckleCase=PERTURBATION_AND_BUCKLING, 
+    createStepName='Step-1', localCsys=None, name='BC-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-3'])
+mdb.models['Model-1'].parts['rigid plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=20.0)
+mdb.models['Model-1'].parts['rigid plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=10.0)
+mdb.models['Model-1'].parts['rigid plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=5.0)
+mdb.models['Model-1'].parts['rigid plate'].setMeshControls(elemShape=QUAD, 
+    regions=
+    mdb.models['Model-1'].parts['rigid plate'].faces.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Model-1'].parts['rigid plate'].setElementType(elemTypes=(ElemType(
+    elemCode=R3D4, elemLibrary=STANDARD), ElemType(elemCode=R3D3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['rigid plate'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['rigid plate'].generateMesh()
+mdb.models['Model-1'].parts['Can_abaqus_file'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.1)
+mdb.models['Model-1'].parts['Can_abaqus_file'].setMeshControls(elemShape=
+    HEX_DOMINATED, regions=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), technique=SYSTEM_ASSIGN)
+mdb.models['Model-1'].parts['Can_abaqus_file'].setElementType(elemTypes=(
+    ElemType(elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Can_abaqus_file'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), technique=BOTTOM_UP)
+mdb.models['Model-1'].parts['Can_abaqus_file'].assignStackDirection(cells=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), referenceRegion=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].faces[26])
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.models['Model-1'].parts['Can_abaqus_file'].setMeshControls(elemShape=TET, 
+    regions=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), technique=FREE)
+mdb.models['Model-1'].parts['Can_abaqus_file'].setElementType(elemTypes=(
+    ElemType(elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF, distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Can_abaqus_file'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, resultsFormat=
+    ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, 
+    waitMinutes=0)
+mdb.models['Model-1'].HomogeneousShellSection(idealization=NO_IDEALIZATION, 
+    integrationRule=SIMPSON, material='aluminum', name='Section-1', 
+    nodalThicknessField='', numIntPts=5, poissonDefinition=DEFAULT, 
+    preIntegrate=OFF, temperature=GRADIENT, thickness=0.0102, thicknessField=''
+    , thicknessModulus=None, thicknessType=UNIFORM, useDensity=OFF)
+mdb.models['Model-1'].parts['Can_abaqus_file'].Set(cells=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-7')
+mdb.models['Model-1'].parts['Can_abaqus_file'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Can_abaqus_file'].sets['Set-7'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'SSOE-AZ-G-11', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '32440 elements have missing property definitions. The elements have been identified in element set ErrElemMissingSection.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': '32440 elements have incorrect property definitions. The elements have been identified in element set WarnElemIncorrectProperty.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_CAN_ABAQUS_FILE-1_CAN_ABAQUS_FILE-REFPT_ HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  Job-1.dat file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  Job-1.dat file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].parts['Can_abaqus_file']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=50.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -25.0), point2=(0.0, 25.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 8.0), point2=(
+    -3.0, 8.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-3.0, 8.0), point2=(
+    -4.0, 7.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-4.0, 7.0), point2=(
+    -4.0, -6.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-4.0, -6.0), point2=
+    (-3.0, -7.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-3.0, -7.0), point2=
+    (0.0, -7.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], 
+    mdb.models['Model-1'].sketches['__profile__'].constraints[12]))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    -1.0, 1.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    -3.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-3.0, 0.0), point2=(
+    -4.0, 1.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-4.0, 1.0), point2=(
+    -4.0, 11.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[10])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-4.0, 11.0), point2=
+    (-3.0, 12.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-3.0, 12.0), point2=
+    (0.0, 12.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[12])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[11], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -6.45359706878662, 7.375901222229), value=10.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[8], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[9])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-2', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['Part-2'].BaseShellRevolve(angle=360.0, 
+    flipRevolveDirection=OFF, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts.changeKey(fromName='Part-2', toName='can')
+del mdb.models['Model-1'].sections['Section-1']
+mdb.models['Model-1'].HomogeneousShellSection(idealization=NO_IDEALIZATION, 
+    integrationRule=SIMPSON, material='aluminum', name='can section', 
+    nodalThicknessField='', numIntPts=5, poissonDefinition=DEFAULT, 
+    preIntegrate=OFF, temperature=GRADIENT, thickness=0.0102, thicknessField=''
+    , thicknessModulus=None, thicknessType=UNIFORM, useDensity=OFF)
+mdb.models['Model-1'].parts['can'].setValues(space=THREE_D, type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['can'].Set(faces=
+    mdb.models['Model-1'].parts['can'].faces.getSequenceFromMask(('[#1f ]', ), 
+    ), name='Set-1')
+mdb.models['Model-1'].parts['can'].SectionAssignment(offset=0.0, offsetField=''
+    , offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['can'].sets['Set-1'], sectionName='can section'
+    , thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.suppressFeatures(featureNames=(
+    'Can_abaqus_file-1', ))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='can-1', part=
+    mdb.models['Model-1'].parts['can'])
+del mdb.models['Model-1'].rootAssembly.features['Can_abaqus_file-1']
+del mdb.models['Model-1'].rootAssembly.features['bottom']
+del mdb.models['Model-1'].rootAssembly.features['top']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['rigid plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -7.71425247192383, -2.05631923675537), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__edit__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__edit__'].vertices[1])
+mdb.models['Model-1'].sketches['__edit__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__edit__'].dimensions[0], 
+    mdb.models['Model-1'].sketches['__edit__'].dimensions[1]))
+mdb.models['Model-1'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -1.23784208297729, -6.30734443664551), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__edit__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__edit__'].vertices[2])
+mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['rigid plate'].regenerate()
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['rigid plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].move(objectList=(
+    mdb.models['Model-1'].sketches['__edit__'].geometry[2], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[3], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[4], 
+    mdb.models['Model-1'].sketches['__edit__'].geometry[5]), vector=(-5.0, 
+    -5.0))
+mdb.models['Model-1'].parts['rigid plate'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['rigid plate'].regenerate()
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-1', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(10.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('rigid plate-1', ))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='rigid plate-2', 
+    part=mdb.models['Model-1'].parts['rigid plate'])
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('rigid plate-2', ), 
+    vector=(0.0, 12.0, 0.0))
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(10.0, 0.0, 
+    0.0), axisPoint=(-3.0, 12.0, 0.0), instanceList=('rigid plate-2', ))
+del mdb.models['Model-1'].steps['Step-1']
+mdb.models['Model-1'].ExplicitDynamicsStep(improvedDtMethod=ON, name='Step-1', 
+    previous='Initial', timePeriod=1.0)
+mdb.models['Model-1'].ContactExp(createStepName='Step-1', name='Int-1')
+mdb.models['Model-1'].interactions['Int-1'].includedPairs.setValuesInStep(
+    stepName='Step-1', useAllstar=ON)
+mdb.models['Model-1'].interactions['Int-1'].contactPropertyAssignments.appendInStep(
+    assignments=((GLOBAL, SELF, 'friction'), ), stepName='Step-1')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-4', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['rigid plate-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].EncastreBC(createStepName='Step-1', localCsys=None, name=
+    'bottom', region=mdb.models['Model-1'].rootAssembly.sets['Set-4'])
+mdb.models['Model-1'].SmoothStepAmplitude(data=((0.0, 0.0), (0.0, 1.0)), name=
+    'Amp-1', timeSpan=STEP)
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['can-1'].edges.getSequenceFromMask(
+    ('[#80 ]', ), ), name='Set-5')
+mdb.models['Model-1'].DisplacementBC(amplitude='Amp-1', createStepName='Step-1'
+    , distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
+    'application', region=mdb.models['Model-1'].rootAssembly.sets['Set-5'], u1=
+    0.0, u2=-25.4, u3=0.0, ur1=0.0, ur2=0.0, ur3=0.0)
+mdb.models['Model-1'].parts['rigid plate'].generateMesh()
+mdb.models['Model-1'].parts['rigid plate'].deleteMesh()
+mdb.models['Model-1'].parts['rigid plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['rigid plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=10.0)
+mdb.models['Model-1'].parts['rigid plate'].generateMesh()
+mdb.models['Model-1'].parts['can'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['can'].faces.getSequenceFromMask(('[#1f ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['can'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=1.1)
+mdb.models['Model-1'].parts['can'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.5)
+mdb.models['Model-1'].parts['can'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.1)
+mdb.models['Model-1'].parts['can'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.2)
+mdb.models['Model-1'].parts['can'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['can'].regenerate()
+mdb.models['Model-1'].parts['can'].deleteMesh()
+mdb.models['Model-1'].parts['can'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.5)
+mdb.models['Model-1'].parts['can'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3R, elemLibrary=EXPLICIT)), 
+    regions=(mdb.models['Model-1'].parts['can'].faces.getSequenceFromMask((
+    '[#1f ]', ), ), ))
+mdb.models['Model-1'].parts['can'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'SSOE-AZ-G-11', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A TABULAR AMPLITUDE CURVE AMP-1 IS DEFINED WITH TIME NOT MONOTONICALLY INCREASING AT TIME 0.0000.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\temp\\Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  Job-1.dat file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  Job-1.dat file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].amplitudes['Amp-1'].setValues(data=((0.0, 0.0), (1.0, 
+    1.0)), timeSpan=TOTAL)
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'SSOE-AZ-G-11', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST STATUS IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'SSOE-AZ-G-11', 'handle': 6592, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'There are 5 warning messages in the data (.dat) file.  Please check the data file for possible errors in the input file.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': PACKAGER_PHASE, 
+    'message': 'The rigid bodies with the reference nodes contained in node set ErrNodeRefNodeNoMass have no mass associated with them and some degrees of freedom of the reference node are not restrained. Either mass must be defined or all of the translational degrees of freedom must be constrained. See the status file for further details.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': PACKAGER_PHASE, 
+    'message': 'The rigid bodies with the reference nodes contained in node set ErrNodeRefNodeNoRot1Axis have atleast one axis about which the rotary inertia magnitude is zero, and the rigid bodies have atleast one rotational degree of freedom which is unconstrained. Either rotary inertia must be defined at the reference nodes or all of the rotational degrees of freedom at the reference nodes must be constrained. See the status file for further details.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': PACKAGER_PHASE, 
+    'message': 'Analysis failed due to Errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Abaqus/Explicit Packager exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Explicit Packager exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Job-1'})
+# Save by CHF78 on 2022_11_11-16.00.43; build 2022 2021_09_15-13.57.30 176069
